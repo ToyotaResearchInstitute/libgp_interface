@@ -8,7 +8,7 @@ void LibgpInterface::Initialize(unsigned int dim, const std::string &cov_kernel,
   gp_ = std::make_shared<libgp::GaussianProcess>(dim, cov_kernel);
   size_t num_hyp = gp_->covf().get_param_dim();
 
-  assert(hp.size() == num_hyp);
+  assert(hyp_params.size() == num_hyp);
 
   Eigen::VectorXd params(num_hyp);
   for (size_t i = 0; i < num_hyp; i++) {
