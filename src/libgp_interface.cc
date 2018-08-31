@@ -1,3 +1,23 @@
+// Copyright 2018 Toyota Research Institute.  All rights reserved.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 #include <libgp_interface.h>
 
 LibgpInterface::LibgpInterface() {}
@@ -118,8 +138,7 @@ void LibgpInterface::Predict(int num_samples, const Eigen::MatrixXd &x,
 }
 
 void LibgpInterface::Predict(int num_samples, const Eigen::MatrixXd &x,
-                             Eigen::VectorXd *y_pred,
-                             Eigen::VectorXd *y_var) {
+                             Eigen::VectorXd *y_pred, Eigen::VectorXd *y_var) {
   // Check for input size.
   int input_dim = GetInputDim();
   assert(x.size() == num_samples * input_dim);
@@ -152,14 +171,8 @@ void LibgpInterface::Predict(int num_samples, const std::vector<double> &x,
   }
 }
 
-int LibgpInterface::GetInputDim() {
-  return gp_->get_input_dim();
-}
+int LibgpInterface::GetInputDim() { return gp_->get_input_dim(); }
 
-int LibgpInterface::GetNumSamples() {
-  return gp_->get_sampleset_size();
-}
+int LibgpInterface::GetNumSamples() { return gp_->get_sampleset_size(); }
 
-void LibgpInterface::Clear() {
-  gp_->clear_sampleset();
-}
+void LibgpInterface::Clear() { gp_->clear_sampleset(); }
